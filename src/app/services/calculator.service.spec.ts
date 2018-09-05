@@ -62,17 +62,6 @@ describe('CalculatorService', () => {
     expect(service.result).toEqual(result);
   });
 
-  it('Se quiere que 5 por 3 se igual a 15 usando la función multiplicar', () => {
-    const number1 = 5;
-    const number2 = 3;
-    const result = 15;
-
-    const spyMultiplicar = spyOn(service, 'multiplicar').and.callThrough();
-    service.multiplicar(number1, number2);
-    expect(spyMultiplicar).toHaveBeenCalled();
-    expect(service.result).toEqual(result);
-  });
-
   it('Se quiere que 6 entre 3 se igual a 2 usando la función dividir', () => {
     const number1 = 6;
     const number2 = 3;
