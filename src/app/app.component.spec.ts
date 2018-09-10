@@ -29,18 +29,23 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular-tdd!');
   }));
 
-  it('Se quiere que 5 más 3 se igual a 8 usando la función sumar', () => {
+  it('Se quiere que 5 más 3 sea igual a 8 ejecutando la función sumar', () => {
     // Obtener instacia del componenente
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.debugElement.componentInstance;
 
-    const number1 = '5';
-    const number2 = '3';
+    const number1 = 5;
+    const number2 = 3;
     const result = 8;
+    const operation = 'sumar'
 
-    const spySumar = spyOn(component, 'sumar').and.callThrough();
-    component.sumar(number1, number2);
-    expect(spySumar).toHaveBeenCalled();
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spyEjecutar = spyOn(component, 'ejecutar').and.callThrough();
+    component.ejecutar();
+    expect(spyEjecutar).toHaveBeenCalled();
     expect(component.result).toEqual(result);
   });
 
@@ -49,13 +54,18 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.debugElement.componentInstance;
 
-    const number1 = '5';
-    const number2 = '3';
+    const number1 = 5;
+    const number2 = 3;
     const result = 2;
+    const operation = 'restar'
 
-    const spyRestar = spyOn(component, 'restar').and.callThrough();
-    component.restar(number1, number2);
-    expect(spyRestar).toHaveBeenCalled();
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spyEjecutar = spyOn(component, 'ejecutar').and.callThrough();
+    component.ejecutar();
+    expect(spyEjecutar).toHaveBeenCalled();
     expect(component.result).toEqual(result);
   });
 
@@ -64,13 +74,18 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.debugElement.componentInstance;
 
-    const number1 = '5';
-    const number2 = '3';
+    const number1 = 5;
+    const number2 = 3;
     const result = 15;
+    const operation = 'multiplicar'
 
-    const spyMultiplicar = spyOn(component, 'multiplicar').and.callThrough();
-    component.multiplicar(number1, number2);
-    expect(spyMultiplicar).toHaveBeenCalled();
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spyEjecutar = spyOn(component, 'ejecutar').and.callThrough();
+    component.ejecutar();
+    expect(spyEjecutar).toHaveBeenCalled();
     expect(component.result).toEqual(result);
   });
 
@@ -79,17 +94,22 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.debugElement.componentInstance;
 
-    const number1 = '6';
-    const number2 = '3';
+    const number1 = 6;
+    const number2 = 3;
     const result = 2;
+    const operation = 'dividir'
 
-    const spyDividir = spyOn(component, 'dividir').and.callThrough();
-    component.dividir(number1, number2);
-    expect(spyDividir).toHaveBeenCalled();
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spyEjecutar = spyOn(component, 'ejecutar').and.callThrough();
+    component.ejecutar();
+    expect(spyEjecutar).toHaveBeenCalled();
     expect(component.result).toEqual(result);
   });
 
-  it('Se quiere ingresar el primer número', () => {
+  it('Se quiere ingresar la priumera cifra', () => {
     // Obtener instacia del componenente
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.debugElement.componentInstance;
@@ -100,6 +120,137 @@ describe('AppComponent', () => {
     component.setNumber(number1);
     expect(spySetNumer).toHaveBeenCalled();
     expect(component.number1).toEqual(parseFloat(number1));
+  });
+
+  it('Se quiere al ingresar un número este se añada a la primera cifra', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+    const currentNumber = 908;
+    const enteredNumber = '6';
+    const result = 9086;
+
+    component.number1 = currentNumber;
+    const spySetNumer = spyOn(component, 'setNumber').and.callThrough();
+    component.setNumber(enteredNumber);
+    expect(spySetNumer).toHaveBeenCalled();
+    expect(component.result).toEqual(result);
+  });
+
+  it('Se quiere limpiar la calculadora', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+    const number1 = 5;
+    const number2 = 8;
+    const result = null;
+    const operation = 'multiplicar'
+
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+    const spyClear = spyOn(component, 'clear').and.callThrough();
+    component.clear();
+    expect(spyClear).toHaveBeenCalled();
+    expect(component.result).toBeNull();
+    expect(component.number1).toBeNull();
+    expect(component.number2).toBeNull();
+  });
+
+  it('Se quiere seleccionar una operación (sumar)', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+
+    const number1 = '45';
+    const operation = 'sumar';
+
+    const spySelectOperation = spyOn(component, 'selectOperation').and.callThrough();
+    const spySetNumer = spyOn(component, 'setNumber').and.callThrough();
+    
+    component.setNumber(number1);
+    expect(spySetNumer).toHaveBeenCalled();
+    expect(component.number1).toEqual(parseFloat(number1));
+
+    component.selectOperation(operation);
+    expect(spySelectOperation).toHaveBeenCalled();
+    expect(component.operation).toEqual(operation);
+  });
+
+  it('Se quiere ingresar la segunda cifra', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+
+    const number1 = '45';
+    const operation = 'sumar';
+    const number2 = '5';
+
+    const spySelectOperation = spyOn(component, 'selectOperation').and.callThrough();
+    const spySetNumer = spyOn(component, 'setNumber').and.callThrough();
+    
+    component.setNumber(number1);
+    expect(spySetNumer).toHaveBeenCalled();
+    expect(component.number1).toEqual(parseFloat(number1));
+
+    component.selectOperation(operation);
+    expect(spySelectOperation).toHaveBeenCalled();
+    expect(component.operation).toEqual(operation);
+
+    component.setNumber(number2);
+    expect(spySetNumer).toHaveBeenCalledTimes(2);
+    expect(component.number2).toEqual(parseFloat(number2));
+  });
+
+  it('Se quiere al ingresar un número este se añada a la segunda cifra', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+
+    const number1 = 45;
+    const operation = 'sumar';
+    const number2 = 5;
+    const enteredNumber = '5';
+    const result = 55;
+
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spySetNumer = spyOn(component, 'setNumber').and.callThrough();
+
+    component.setNumber(enteredNumber);
+    expect(spySetNumer).toHaveBeenCalled();
+    expect(component.number2).toEqual(result);
+  });
+
+  it('Se quiere obtener el resultado de una operación (sumar)', () => {
+    // Obtener instacia del componenente
+    const fixture = TestBed.createComponent(AppComponent);
+    const component = fixture.debugElement.componentInstance;
+
+    const number1 = 45;
+    const operation = 'sumar';
+    const number2 = 5;
+    const result = 50;
+
+    component.number1 = number1;
+    component.number2 = number2;
+    component.operation = operation;
+
+    const spyEjecutar = spyOn(component, 'ejecutar').and.callThrough();
+
+    component.ejecutar();
+    expect(spyEjecutar).toHaveBeenCalled();
+    expect(component.result).toEqual(result);
+    expect(component.number1).toBeNull();
+    expect(component.number2).toBeNull();
+
   });
 
 });

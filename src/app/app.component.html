@@ -34,7 +34,7 @@
             <button type="button" class="btn btn-outline-dark form-control" value="9" (click)="setNumber('9')">9</button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-primary form-control"><i class="fas fa-plus"></i></button>
+            <button type="button" class="btn btn-primary form-control" (click)="selectOperation('sumar')"><i class="fas fa-plus"></i></button>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -48,7 +48,7 @@
             <button type="button" class="btn btn-outline-dark form-control" value="5" (click)="setNumber('5')">5</button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-success form-control"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-success form-control" (click)="selectOperation('restar')"><i class="fas fa-minus"></i></button>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -62,21 +62,21 @@
             <button type="button" class="btn btn-outline-dark form-control" value="3" (click)="setNumber('3')">3</button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-info form-control"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-info form-control" (click)="selectOperation('multiplicar')"><i class="fas fa-times"></i></button>
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-3">
-            <button type="button" class="btn btn-danger form-control"><b>C</b></button>
+            <button type="button" class="btn btn-danger form-control" (click)="clear()"><b>C</b></button>
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-outline-dark form-control" value="0" (click)="setNumber('0')">0</button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-secondary form-control"><i class="fas fa-divide"></i></button>
+            <button type="button" class="btn btn-secondary form-control" (click)="selectOperation('dividir')"><i class="fas fa-divide"></i></button>
           </div>
           <div class="col-md-3">
-            <button type="button" class="btn btn-warning form-control"><i class="fas fa-equals"></i></button>
+            <button type="button" class="btn btn-warning form-control" (click)="ejecutar()"><i class="fas fa-equals"></i></button>
           </div>
         </div>
       </div>
