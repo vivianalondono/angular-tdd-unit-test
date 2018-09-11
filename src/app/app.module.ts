@@ -6,11 +6,13 @@ import { CalculatorService } from './services/calculator.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import { DotPipe } from './pipes/dot.pipe';
+import { OnlyNumberDirective } from './directive/only-number.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DotPipe
+    DotPipe,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,

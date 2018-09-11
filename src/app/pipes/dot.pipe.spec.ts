@@ -1,6 +1,6 @@
 import { DotPipe } from './dot.pipe';
 
-fdescribe('DotPipe', () => {
+describe('DotPipe', () => {
 
   it('create an instance', () => {
     const pipe = new DotPipe();
@@ -35,7 +35,7 @@ fdescribe('DotPipe', () => {
     expect(result).toEqual('0');
   });
 
-  it('Se espera que muestre "0" cuando no se ha ingresado un número infinito', () => {
+  it('Se espera que muestre " " cuando no se ha ingresado un número infinito', () => {
     const pipe = new DotPipe();
     let result;
     result=pipe.transform('234567894567894567856789567890');

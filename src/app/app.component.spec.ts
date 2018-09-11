@@ -1,17 +1,34 @@
 import { FormsModule } from '@angular/forms';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { DotPipe } from './pipes/dot.pipe';
+import { OnlyNumberDirective } from './directive/only-number.directive';
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let inputEl: DebugElement;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        DotPipe,
+        OnlyNumberDirective
       ],
       imports: [
         FormsModule
       ]
     }).compileComponents();
   }));
+
+  beforeEach(() => { 
+    fixture = TestBed.createComponent(AppComponent); 
+    component = fixture.componentInstance;
+    inputEl = fixture.debugElement.query(By.css('input'));
+  });
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -102,4 +119,45 @@ describe('AppComponent', () => {
     expect(component.number1).toEqual(parseFloat(number1));
   });
 
+  fdescribe('Directive: HoverFocus', () => {
+    xit('hovering over input', () => {
+      inputEl.triggerEventHandler('keypress', null); 
+      fixture.detectChanges();
+      console.log('elemento ', inputEl)
+      // expect(inputEl.nativeElement).toBe('blue'); 
+    
+      // inputEl.triggerEventHandler('keypress', null);
+      // fixture.detectChanges();
+      // console.log(inputEl.nativeElement.style.backgroundColor);
+      // expect(inputEl.nativeElement.style.backgroundColor).toBe('inherit');
+    });
+
+    it('should get color when dragover drop zone', () => {
+      fixture.detectChanges();
+
+      const event = new KeyboardEvent("keydown");
+      
+      const event1 = new KeyboardEvent("KeyboardEvent",{
+        "key": "6"
+      });
+      const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));
+      element.nativeElement.value = '123'
+      // console.log('test ',element.nativeElement.value)
+      
+
+      element.triggerEventHandler("keydown",{
+        "key": 'a'
+      });
+      // console.log('y...', element.triggerEventHandler('KeyboardEvent', event))
+      // console.log('test 2',element.nativeElement.value)
+
+      // console.log('...', element.nativeElement.dispatchEvent(event));
+      expect(element.nativeElement.value).toBe('123');
+      //expect(directiveInstance.background).toBe('#bbbbbb');
+    });
+    
+  });
+  
+
 });
+

@@ -47,7 +47,11 @@ export class AppComponent {
       this.result = this.number1;
     }
     // this.number1 = n;
-    console.log(this.number1);
+    console.log(this.result);
+    
+  }
+  show(value: any) {
+    console.log(value);
     
   }
 
