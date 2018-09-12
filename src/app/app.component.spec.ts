@@ -119,41 +119,29 @@ describe('AppComponent', () => {
     expect(component.number1).toEqual(parseFloat(number1));
   });
 
-  fdescribe('Directive: HoverFocus', () => {
-    xit('hovering over input', () => {
-      inputEl.triggerEventHandler('keypress', null); 
-      fixture.detectChanges();
-      console.log('elemento ', inputEl)
-      // expect(inputEl.nativeElement).toBe('blue'); 
-    
-      // inputEl.triggerEventHandler('keypress', null);
-      // fixture.detectChanges();
-      // console.log(inputEl.nativeElement.style.backgroundColor);
-      // expect(inputEl.nativeElement.style.backgroundColor).toBe('inherit');
+  fdescribe('Directive: onlynumber', () => {
+
+    it('Debería permitir ingresar números', () => {
+      const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));
+      const directiveInstance = element.injector.get(OnlyNumberDirective);
+
+      element.nativeElement.value = '123'
+      element.triggerEventHandler("keydown",{
+        "key": '2'
+      });
+      expect(directiveInstance.output).toBe('1232');
     });
 
-    it('should get color when dragover drop zone', () => {
-      fixture.detectChanges();
+    it('Debería no permitir ingresar letras', () => {
 
-      const event = new KeyboardEvent("keydown");
-      
-      const event1 = new KeyboardEvent("KeyboardEvent",{
-        "key": "6"
-      });
       const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));
-      element.nativeElement.value = '123'
-      // console.log('test ',element.nativeElement.value)
-      
+      const directiveInstance = element.injector.get(OnlyNumberDirective);
 
+      element.nativeElement.value = '123'
       element.triggerEventHandler("keydown",{
         "key": 'a'
       });
-      // console.log('y...', element.triggerEventHandler('KeyboardEvent', event))
-      // console.log('test 2',element.nativeElement.value)
-
-      // console.log('...', element.nativeElement.dispatchEvent(event));
-      expect(element.nativeElement.value).toBe('123');
-      //expect(directiveInstance.background).toBe('#bbbbbb');
+      expect(directiveInstance.output).toBe('123');
     });
     
   });
