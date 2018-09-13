@@ -86,4 +86,12 @@ export class AppComponent {
     }
   }
 
+  show(value: any) {
+    console.log(value);
+  }
+
+  updateRsult(event: any) {
+    console.log('event', event);
+  }
+
 }

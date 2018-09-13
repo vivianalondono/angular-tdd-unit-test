@@ -1,17 +1,35 @@
 import { FormsModule } from '@angular/forms';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { DotPipe } from './pipes/dot.pipe';
+import { OnlyNumberDirective } from './directive/only-number.directive';
+
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let inputEl: DebugElement;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        DotPipe,
+        OnlyNumberDirective
       ],
       imports: [
         FormsModule
       ]
     }).compileComponents();
   }));
+
+  beforeEach(() => { 
+    fixture = TestBed.createComponent(AppComponent); 
+    component = fixture.componentInstance;
+    inputEl = fixture.debugElement.query(By.css('input'));
+  });
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -253,4 +271,33 @@ describe('AppComponent', () => {
 
   });
 
+  describe('Directive: onlynumber', () => {
+
+    it('Debería permitir ingresar números', () => {
+      const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));
+      const directiveInstance = element.injector.get(OnlyNumberDirective);
+
+      element.nativeElement.value = '123'
+      element.triggerEventHandler("keydown",{
+        "key": '2'
+      });
+      expect(directiveInstance.output).toBe('1232');
+    });
+
+    it('Debería no permitir ingresar letras', () => {
+
+      const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));
+      const directiveInstance = element.injector.get(OnlyNumberDirective);
+
+      element.nativeElement.value = '123'
+      element.triggerEventHandler("keydown",{
+        "key": 'a'
+      });
+      expect(directiveInstance.output).toBe('123');
+    });
+    
+  });
+  
+
 });
+
