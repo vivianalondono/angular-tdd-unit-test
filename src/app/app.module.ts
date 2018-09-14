@@ -11,6 +11,8 @@ import { OnlyNumberDirective } from './directive/only-number.directive';
 import { OtherPageComponent } from './other-page/other-page.component';
 import { RouterModule } from '@angular/router';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { UsersService } from './services/users/users.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,13 @@ import { CalculatorComponent } from './calculator/calculator.component';
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
-  providers: [CalculatorService],
+  providers: [
+    CalculatorService,
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
