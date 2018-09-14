@@ -1,7 +1,7 @@
 import { OnlyNumberDirective } from './only-number.directive';
 import { DebugElement, ElementRef } from '@angular/core';
 
-fdescribe('OnlyNumberDirective', () => {
+describe('OnlyNumberDirective', () => {
 
   class MockElementRef extends ElementRef {
     constructor() {

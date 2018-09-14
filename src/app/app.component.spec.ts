@@ -119,7 +119,7 @@ describe('AppComponent', () => {
     expect(component.number1).toEqual(parseFloat(number1));
   });
 
-  fdescribe('Directive: onlynumber', () => {
+  describe('Directive: onlynumber', () => {
 
     it('Debería permitir ingresar números', () => {
       const element: DebugElement = fixture.debugElement.query(By.css('#numbers'));

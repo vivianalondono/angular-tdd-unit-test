@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import { DotPipe } from './pipes/dot.pipe';
 import { OnlyNumberDirective } from './directive/only-number.directive';
+import { UsersService } from './services/users/users.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,13 @@ import { OnlyNumberDirective } from './directive/only-number.directive';
   imports: [
     BrowserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [CalculatorService],
+  providers: [
+    CalculatorService,
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
