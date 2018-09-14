@@ -314,6 +314,23 @@ describe('CalculatorComponent', () => {
       });
     });
 
+    it('Se quiere navegar a otherPage con parametros', () => {
+      // Obtener instacia del componenente
+      const fixture = TestBed.createComponent(CalculatorComponent);
+      const component = fixture.debugElement.componentInstance;
+      const injector = getTestBed();
+      location = injector.get(Location);
+      const router = injector.get(Router);
+      const param = 'parametro';
+      
+      spyOn(component, 'navigateToOtherPage').and.callThrough();
+      component.navigateToOtherPage(param);
+      fixture.whenStable().then(() => {
+        expect(component.navigateToOtherPage).toHaveBeenCalledWith(param);
+        expect(location.path()).toContain('otherPage/' + param);       
+      });
+    });
+
   });
 
 });

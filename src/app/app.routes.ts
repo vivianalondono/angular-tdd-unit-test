@@ -8,6 +8,7 @@ export const ROUTES: Routes = [
     { path: '', component: CalculatorComponent },
     { path: '', redirectTo: '', pathMatch: 'full' },
     { path: 'otherPage', component: OtherPageComponent },
+    { path: 'otherPage/:params', component: OtherPageComponent },
     { path: '**', component: AppComponent }
 ];
 

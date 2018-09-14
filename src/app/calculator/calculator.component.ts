@@ -97,8 +97,12 @@ export class CalculatorComponent {
     console.log('event', event);
   }
 
-  navigateToOtherPage(){
-    this._router.navigate(['otherPage']);
+  navigateToOtherPage(param: any) {
+    if (param) {
+      this._router.navigate(['otherPage', param]);
+    } else {
+      this._router.navigate(['otherPage']);
+    }
   }
 
 }
