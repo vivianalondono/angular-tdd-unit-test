@@ -22,7 +22,6 @@ export class OnlyNumberDirective {
       return;
     } else {
       if (!String(event.key).match(this.regex)) {
-        console.log("mal");
         return false;
       }
     }

@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DotPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-      console.log(value);
       if (!value || value == 'NaN') return '0';
       if (value == 'Infinity') return '&#x221e;';
       value = value.toString().replace(/\$|\,/g, '');
