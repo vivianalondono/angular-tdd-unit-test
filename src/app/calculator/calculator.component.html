@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-md-3 card calculator">
       <div class="card-body">
-        <input appOnlyNumber type="text" name="numbers" id="numbers" class="form-control text-right" [ngModel]="result | dot" (ngModelChange)="updateRsult($event)">
+        <input type="text" name="numbers" id="numbers" class="form-control text-right" [ngModel]="result" (ngModelChange)="updateRsult($event)">
         <div class="row justify-content-center">
           <div class="col-md-3">
             <button type="button" class="btn btn-outline-dark form-control" value="7" (click)="setNumber('7')">7</button>

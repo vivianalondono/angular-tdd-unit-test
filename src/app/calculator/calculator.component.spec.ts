@@ -108,7 +108,7 @@ describe('CalculatorComponent', () => {
     expect(component.result).toEqual(result);
   });
 
-  it('Se quiere que 6 entre 3 se igual a 2 usando la función dividir', () => {
+  it('Se quiere que 6 entre 3 sea igual a 2 usando la función dividir', () => {
     // Arrange
     const number1 = 6;
     const number2 = 3;

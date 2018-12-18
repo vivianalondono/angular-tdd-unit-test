@@ -10,9 +10,10 @@ import { DotPipe } from './pipes/dot.pipe';
 import { OnlyNumberDirective } from './directive/only-number.directive';
 import { OtherPageComponent } from './other-page/other-page.component';
 import { RouterModule } from '@angular/router';
-import { CalculatorComponent } from './calculator/calculator.component';
+
 import { UsersService } from './services/users/users.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 @NgModule({
   declarations: [
